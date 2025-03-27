@@ -8,7 +8,7 @@ class ParkingLot {
   public ParkingLot() {
     let levels = new Array<Level>(this.NUM_LEVELS);
     for (let i = 0; i < this.NUM_LEVELS; i++) {
-      // levels[i] = new Level(i, 30);
+      levels[i] = new Level(i, 30);
     }
     this.levels = levels;
   }

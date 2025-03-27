@@ -8,6 +8,10 @@ class Level {
   private availableSpots: number = 0;
   private static readonly SPOTS_PER_ROW: number = 10;
 
+  constructor( floor: number, numberSpots: number ) {
+    this.Level( floor, numberSpots );
+  }
+
   public Level(flr: number, numberSpots: number) {
     this.floor = flr;
     this.spots = new Array<ParkingSpot>(numberSpots);
@@ -24,7 +28,7 @@ class Level {
         sz = VehicleSize.Compact;
       }
       let row = i / Level.SPOTS_PER_ROW;
-      // this.spots[i] = new ParkingSpot(this, row, i, sz);
+      this.spots[i] = new ParkingSpot(this, row, i, sz);
     }
     this.availableSpots = numberSpots;
   }
@@ -37,14 +41,20 @@ class Level {
     if (this.availableSpots < vehicle.getSpotNeeded()) {
       return false;
     }
-    // logic
-    return false;
+    let spotNumber = this.findAvailableSpots(vehicle);
+    if (spotNumber < 0) {
+      return false;
+    }
+    return this.parkStartingAtSpot(spotNumber, vehicle);
   }
 
   private parkStartingAtSpot(spotNumber: number, vehicle: Vehicle): boolean {
     vehicle.clearSpot();
     let success = true;
-    // logic
+    for (let i = spotNumber; i < spotNumber + vehicle.getSpotNeeded(); i++) {
+      success = success && this.spots[i].park(vehicle);
+    }
+    this.availableSpots -= vehicle.getSpotNeeded();
     return success;
   }
 
@@ -52,13 +62,34 @@ class Level {
     let spotNeeded: number = vehicle.getSpotNeeded();
     let lastRow = -1;
     let spotsFound = 0;
-    // logic
+    for (let i = 0; i < this.spots.length; i++) {
+      let spot: ParkingSpot = this.spots[i];
+      if (lastRow !== spot.getRow()) {
+        spotsFound = 0;
+        lastRow = spot.getRow();
+      }
+      if (spot.canFitVehicle(vehicle)) {
+        spotsFound++;
+      } else {
+        spotsFound = 0;
+      }
+      if (spotsFound === spotNeeded) {
+        return i - (spotNeeded - 1);
+      }
+    }
     return -1;
   }
 
   public print(): void {
     let lastRow = -1;
-    // logic
+    for (let i = 0; i < this.spots.length; i++) {
+      let spot: ParkingSpot = this.spots[i];
+      if (spot.getRow() !== lastRow) {
+        console.log(' ');
+        lastRow = spot.getRow();
+      }
+      spot.print();
+    }
   }
 
   public spotFreed(): void {

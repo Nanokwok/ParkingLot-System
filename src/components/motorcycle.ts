@@ -1,5 +1,6 @@
 import { Vehicle } from "./vehicle";
 import { VehicleSize } from "../types/vehicleSize";
+import { ParkingSpot } from "./parkingSpot";
 
 class Motorcycle extends Vehicle {
   public Motorcycle() {
@@ -7,9 +8,8 @@ class Motorcycle extends Vehicle {
     this.vehicleSize = VehicleSize.Motorcycle;
   }
 
-  public canFitInSpot(): boolean {
-    // logic
-    return false;
+  public canFitInSpot( spot: ParkingSpot ): boolean {
+    return spot.getSize() === VehicleSize.Motorcycle;
   }
 
   public print(): void {

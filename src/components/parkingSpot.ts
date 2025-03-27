@@ -1,18 +1,26 @@
 import { VehicleSize } from '@/types/vehicleSize';
 import { Vehicle } from './vehicle';
+import { Level } from './level';
 
 class ParkingSpot {
   private vehicle: Vehicle | null = null;
-  private spotSize: VehicleSize | null = null;
-  // private row: number;
-  // private spotNumber: number;
-  // level
+  private spotSize: VehicleSize = VehicleSize.Compact;
+  private row: number = 0;
+  private spotNumber: number = 0;
+  private level: Level = new Level(0, 0);
 
-  public ParkingSpot(r: number, n: number, sz: VehicleSize) {
-    // level
-    // this.row = r;
-    // this.spotNumber = n;
-    // this.spotSize = sz;
+  constructor(lvl: Level, r: number, n: number, sz: VehicleSize) {
+    this.level = lvl;
+    this.row = r;
+    this.spotNumber = n;
+    this.spotSize = sz;
+  }
+
+  public ParkingSpot(lvl: Level, r: number, n: number, sz: VehicleSize) {
+    this.level = lvl;
+    this.row = r;
+    this.spotNumber = n;
+    this.spotSize = sz;
   }
 
   public isAvailable(): boolean {
@@ -29,8 +37,20 @@ class ParkingSpot {
     return false
   }
 
+  public getRow(): number {
+    return this.row;
+  }
+
+  public getSpotNumber(): number {
+    return this.spotNumber;
+  }
+
+  public getSize(): VehicleSize {
+    return this.spotSize;
+  }
+
   public removeVehicle(): void {
-    // choose level
+    this.level.spotFreed();
     this.vehicle = null;
   }
 
