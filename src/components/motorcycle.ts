@@ -7,6 +7,11 @@ class Motorcycle extends Vehicle {
     this.vehicleSize = VehicleSize.Motorcycle;
   }
 
+  public canFitInSpot(): boolean {
+    // logic
+    return false;
+  }
+
   public print(): void {
     console.log('Motorcycle');
   }

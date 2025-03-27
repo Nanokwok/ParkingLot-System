@@ -7,6 +7,11 @@ class Car extends Vehicle {
     this.vehicleSize = VehicleSize.Compact;
   }
 
+  public canFitInSpot(): boolean {
+    // logic
+    return false;
+  }
+
   public print(): void {
     console.log('Car');
   }

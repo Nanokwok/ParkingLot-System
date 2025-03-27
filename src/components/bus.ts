@@ -7,9 +7,15 @@ class Bus extends Vehicle {
     this.vehicleSize = VehicleSize.Large;
   }
 
+  public canFitInSpot(): boolean {
+    // logic
+    return false;
+  }
+
   public print(): void {
     console.log('Bus');
   }
+
 }
 
 export { Bus };
