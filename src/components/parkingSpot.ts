@@ -28,13 +28,16 @@ class ParkingSpot {
   }
 
   public canFitVehicle(vehicle: Vehicle): boolean {
-    // logic
-    return false
+    return this.isAvailable() && vehicle.canFitInSpot(this);
   }
 
   public park(vehicle: Vehicle): boolean {
-    // logic
-    return false
+    if (!this.canFitVehicle(vehicle)) {
+      return false;
+    }
+    this.vehicle = vehicle;
+    this.vehicle.parkInSpot(this);
+    return true;
   }
 
   public getRow(): number {

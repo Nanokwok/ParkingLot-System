@@ -1,4 +1,4 @@
-import { ParkingSpot } from "./parkingSpot";
+import { ParkingSpot } from './parkingSpot';
 import { VehicleSize } from '../types/vehicleSize';
 import { Vehicle } from './vehicle';
 
