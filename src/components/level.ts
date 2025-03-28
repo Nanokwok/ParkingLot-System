@@ -67,11 +67,6 @@ class Level {
 
     for (let i = 0; i < this.spots.length; i++) {
       const spot = this.spots[i];
-      // console.log("Spot: ", spot.print(), lastRow, spot.getRow());
-      // if (lastRow !== spot.getRow()) {
-      //   spotsFound = 0;
-      //   lastRow = spot.getRow();
-      // }
       var check = spot.canFitVehicle(vehicle);
       console.log("Check: ", check);
 

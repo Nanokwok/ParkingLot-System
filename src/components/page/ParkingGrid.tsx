@@ -22,9 +22,13 @@ const ParkingGrid: React.FC<ParkingGridProps> = ({ levels }) => {
             {/* Loop through spots per level */}
             <div className="grid grid-cols-3 gap-2">
               {level.print().map((spot, spotIndex) => {
-                const color = ["🚌", "🚗", "🛵"].includes(spot) ? "bg-green-300" : "bg-gray-200";
-                const size = ["🚌", "🚗", "🛵"].includes(spot) ? "text-3xl" : "text-sm";
-                
+                const color = ["🚌", "🚗", "🛵"].includes(spot)
+                  ? "bg-green-300"
+                  : "bg-gray-200";
+                const size = ["🚌", "🚗", "🛵"].includes(spot)
+                  ? "text-3xl"
+                  : "text-sm";
+
                 return (
                   <div
                     key={spotIndex}

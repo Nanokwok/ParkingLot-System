@@ -16,13 +16,6 @@ class ParkingSpot {
     this.spotSize = sz;
   }
 
-  // public ParkingSpot(lvl: Level, r: number, n: number, sz: VehicleSize) {
-  //   this.level = lvl;
-  //   this.row = r;
-  //   this.spotNumber = n;
-  //   this.spotSize = sz;
-  // }
-
   public isAvailable(): boolean {
     return this.vehicle === null;
   }
