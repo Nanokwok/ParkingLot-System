@@ -38,10 +38,12 @@ class Level {
   }
 
   public parkVehicle(vehicle: Vehicle): boolean {
+    console.log("Parking vehicle 2: ", vehicle.print());
     if (this.availableSpots < vehicle.getSpotNeeded()) {
       return false;
     }
     let spotNumber = this.findAvailableSpots(vehicle);
+    console.log("Spot number: ", spotNumber);
     if (spotNumber < 0) {
       return false;
     }
@@ -59,41 +61,51 @@ class Level {
   }
 
   private findAvailableSpots(vehicle: Vehicle): number {
-    let spotNeeded: number = vehicle.getSpotNeeded();
+    const spotsNeeded = vehicle.getSpotNeeded();
     let lastRow = -1;
     let spotsFound = 0;
+
     for (let i = 0; i < this.spots.length; i++) {
-      let spot: ParkingSpot = this.spots[i];
-      if (lastRow !== spot.getRow()) {
-        spotsFound = 0;
-        lastRow = spot.getRow();
-      }
-      if (spot.canFitVehicle(vehicle)) {
+      const spot = this.spots[i];
+      console.log("Spot: ", spot.print(), lastRow, spot.getRow());
+      // if (lastRow !== spot.getRow()) {
+      //   spotsFound = 0;
+      //   lastRow = spot.getRow();
+      // }
+      var check = spot.canFitVehicle(vehicle);
+      console.log("Check: ", check);
+
+      if (check) {
         spotsFound++;
+        console.log("spotsFound: ", spotsFound);
       } else {
         spotsFound = 0;
       }
-      if (spotsFound === spotNeeded) {
-        return i - (spotNeeded - 1);
+
+      if (spotsFound === spotsNeeded) {
+        return i - (spotsNeeded - 1);
       }
     }
+
     return -1;
   }
-
-  public print(): void {
-    let lastRow = -1;
-    for (let i = 0; i < this.spots.length; i++) {
-      let spot: ParkingSpot = this.spots[i];
-      if (spot.getRow() !== lastRow) {
-        console.log(' ');
-        lastRow = spot.getRow();
-      }
-      spot.print();
-    }
-  }
-
+  
   public spotFreed(): void {
     this.availableSpots++;
+  }
+
+  public print(): string[] {
+    let output: string[] = [];
+    let lastRow = -1;
+    
+    this.spots.forEach(spot => {
+      if (spot.getRow() !== lastRow) {
+        lastRow = spot.getRow();
+      }
+      output.push(spot.print());
+    });
+
+    return output;
   }
 
 }

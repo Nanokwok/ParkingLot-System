@@ -7,6 +7,13 @@ abstract class Vehicle {
   protected spotNeeded: number = 0;
   protected vehicleSize: VehicleSize = VehicleSize.Motorcycle;
 
+  constructor(licensePlate: string, spotNeeded: number, vehicleSize: VehicleSize, parkingSpots: Array<ParkingSpot>) {
+    this.spotNeeded = spotNeeded;
+    this.vehicleSize = vehicleSize;
+    this.parkingSpots = parkingSpots;
+    this.licensePlate = licensePlate;
+  }
+
   public getSpotNeeded(): number {
     return this.spotNeeded;
   }
@@ -28,7 +35,7 @@ abstract class Vehicle {
 
   public abstract canFitInSpot(spot: ParkingSpot): boolean
 
-  public abstract print(): void;
+  public abstract print(): string;
 
 }
 

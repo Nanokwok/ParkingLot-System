@@ -12,8 +12,8 @@ class Car extends Vehicle {
     return spot.getSize() === VehicleSize.Compact;
   }
 
-  public print(): void {
-    console.log('Car');
+  public print(): string {
+    return 'Car';
   }
 }
 

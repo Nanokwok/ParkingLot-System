@@ -16,12 +16,12 @@ class ParkingSpot {
     this.spotSize = sz;
   }
 
-  public ParkingSpot(lvl: Level, r: number, n: number, sz: VehicleSize) {
-    this.level = lvl;
-    this.row = r;
-    this.spotNumber = n;
-    this.spotSize = sz;
-  }
+  // public ParkingSpot(lvl: Level, r: number, n: number, sz: VehicleSize) {
+  //   this.level = lvl;
+  //   this.row = r;
+  //   this.spotNumber = n;
+  //   this.spotSize = sz;
+  // }
 
   public isAvailable(): boolean {
     return this.vehicle === null;
@@ -57,21 +57,19 @@ class ParkingSpot {
     this.vehicle = null;
   }
 
-  public print(): void {
+  public print(): string {
     if (this.vehicle === null) {
       if (this.spotSize === VehicleSize.Compact) {
-        console.log('compact');
+        return 'compact';
       }
       if (this.spotSize === VehicleSize.Large) {
-        console.log('large');
+        return 'large';
       }
       if (this.spotSize === VehicleSize.Motorcycle) {
-        console.log('motorcycle');
+        return 'motor';
       }
     }
-    else {
-      this.vehicle.print();
-    }
+    return this.vehicle!.print();
   }
 
 }

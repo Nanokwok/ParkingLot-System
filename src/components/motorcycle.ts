@@ -12,8 +12,8 @@ class Motorcycle extends Vehicle {
     return spot.getSize() === VehicleSize.Motorcycle;
   }
 
-  public print(): void {
-    console.log('Motorcycle');
+  public print(): string {
+    return 'Motorcycle';
   }
 }
 
