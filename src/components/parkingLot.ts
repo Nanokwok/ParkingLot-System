@@ -30,14 +30,6 @@ class ParkingLot {
     return false;
   }
 
-  public handleParkVehicle = (vehicle: Vehicle) => {
-    const success = this.parkVehicle(vehicle);
-    console.log("success: ", success);
-    if (!success) {
-      alert('Parking lot is full!');
-    }
-  };
-
   public getLevels(): number {
     return this.NUM_LEVELS;
   }

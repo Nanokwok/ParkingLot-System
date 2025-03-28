@@ -35,7 +35,9 @@ class ParkingSpot {
     if (!this.canFitVehicle(vehicle)) {
       return false;
     }
+    console.log('this.park, vehicle 1', this.vehicle, vehicle);
     this.vehicle = vehicle;
+    console.log('this.park, vehicle 2', this.vehicle, vehicle);
     this.vehicle.parkInSpot(this);
     return true;
   }
@@ -58,6 +60,7 @@ class ParkingSpot {
   }
 
   public print(): string {
+    console.log('print', this.vehicle);
     if (this.vehicle === null) {
       if (this.spotSize === VehicleSize.Compact) {
         return 'compact';

@@ -12,7 +12,7 @@ class Bus extends Vehicle {
   }
 
   public print(): string {
-    return 'Bus';
+    return '🚌';
   }
 
 }

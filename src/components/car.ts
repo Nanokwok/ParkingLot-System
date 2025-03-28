@@ -3,17 +3,16 @@ import { VehicleSize } from '../types/vehicleSize';
 import { ParkingSpot } from './parkingSpot';
 
 class Car extends Vehicle {
-  public Car() {
-    this.spotNeeded = 1;
-    this.vehicleSize = VehicleSize.Compact;
+  constructor() {
+    super('', 1, VehicleSize.Compact, []);
   }
 
   public canFitInSpot( spot: ParkingSpot ): boolean {
-    return spot.getSize() === VehicleSize.Compact;
+    return spot.getSize() === VehicleSize.Compact || spot.getSize() === VehicleSize.Large;
   }
 
   public print(): string {
-    return 'Car';
+    return '🚗';
   }
 }
 

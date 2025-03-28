@@ -3,9 +3,8 @@ import { VehicleSize } from "../types/vehicleSize";
 import { ParkingSpot } from "./parkingSpot";
 
 class Motorcycle extends Vehicle {
-  public Motorcycle() {
-    this.spotNeeded = 1;
-    this.vehicleSize = VehicleSize.Motorcycle;
+  constructor() {
+    super('', 1, VehicleSize.Motorcycle, []);
   }
 
   public canFitInSpot( spot: ParkingSpot ): boolean {
@@ -13,7 +12,7 @@ class Motorcycle extends Vehicle {
   }
 
   public print(): string {
-    return 'Motorcycle';
+    return '🛵';
   }
 }
 

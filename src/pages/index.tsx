@@ -7,21 +7,27 @@ import ParkingGrid from '@/components/page/ParkingGrid';
 import Footer from '@/components/page/Footer';
 import { useState } from 'react';
 import { Level } from '@/components/level';
+import { Vehicle } from '@/components/vehicle';
 
 const Index: React.FC = () => {
   const NUM_LEVELS = 10;
   const [levels, setLevels] = useState<Level[]>(
     Array.from({ length: NUM_LEVELS }, (_, i) => new Level(i, 30))
   );
-  const parkingLot = new ParkingLot(levels);
+  const [parkingLot, setParkingLot] = useState(new ParkingLot(levels));
 
-  // console.log(levels);
-
+  const parkVehicle = (vehicle: Vehicle) => {
+   const success = parkingLot.parkVehicle(vehicle); // Update the parking lot
+    setParkingLot(new ParkingLot([...levels])); // Force re-render by updating state
+    if (!success) {
+      alert('Parking lot is full!');
+    }
+  };
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col justify-between items-center">
       <Header />
 
-      <AddVehicle parkingLotObject={parkingLot} />
+      <AddVehicle parkingLotObject={parkingLot} onPark={parkVehicle} />
 
       <ParkingGrid levels={levels} />
 
