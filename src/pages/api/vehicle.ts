@@ -1,4 +1,4 @@
-import { VehicleSize } from '../types/vehicleSize';
+import { VehicleSize } from '../../types/vehicleSize';
 import { ParkingSpot } from './parkingSpot';
 
 abstract class Vehicle {

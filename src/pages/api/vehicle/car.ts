@@ -1,6 +1,6 @@
-import { Vehicle } from './vehicle';
-import { VehicleSize } from '../types/vehicleSize';
-import { ParkingSpot } from './parkingSpot';
+import { Vehicle } from '../vehicle';
+import { VehicleSize } from '../../../types/vehicleSize';
+import { ParkingSpot } from '../parkingSpot';
 
 class Car extends Vehicle {
   constructor() {

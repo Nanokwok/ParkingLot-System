@@ -1,8 +1,8 @@
 import React from "react";
-import { ParkingLot } from "../../pages/api/parkingLot";
-import { Bus } from "../../pages/api/vehicle/bus";
-import { Car } from "../../pages/api/vehicle/car";
-import { Motorcycle } from "../../pages/api/vehicle/motorcycle";
+import { ParkingLot } from "../pages/api/parkingLot";
+import { Bus } from "@/pages/api/vehicle/bus";
+import { Car } from "@/pages/api/vehicle/car";
+import { Motorcycle } from "@/pages/api/vehicle/motorcycle";
 
 interface AddVehicleProps {
   parkingLotObject: InstanceType<typeof ParkingLot>;

@@ -1,5 +1,5 @@
 import { ParkingSpot } from './parkingSpot';
-import { VehicleSize } from '../types/vehicleSize';
+import { VehicleSize } from '../../types/vehicleSize';
 import { Vehicle } from './vehicle';
 
 class Level {

@@ -1,6 +1,6 @@
-import { Vehicle } from "./vehicle";
-import { VehicleSize } from "../types/vehicleSize";
-import { ParkingSpot } from "./parkingSpot";
+import { Vehicle } from "../vehicle";
+import { VehicleSize } from "../../../types/vehicleSize";
+import { ParkingSpot } from "../parkingSpot";
 
 class Motorcycle extends Vehicle {
   constructor() {
@@ -8,7 +8,7 @@ class Motorcycle extends Vehicle {
   }
 
   public canFitInSpot( spot: ParkingSpot ): boolean {
-    return spot.getSize() === VehicleSize.Motorcycle;
+    return spot.getSize() === VehicleSize.Motorcycle || spot.getSize() === VehicleSize.Compact;
   }
 
   public print(): string {
