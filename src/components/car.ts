@@ -3,8 +3,8 @@ import { VehicleSize } from '../types/vehicleSize';
 import { ParkingSpot } from './parkingSpot';
 
 class Car extends Vehicle {
-  constructor() {
-    super('', 1, VehicleSize.Compact, []);
+  constructor( licensePlate: string ) {
+    super(licensePlate, 1, VehicleSize.Compact, []);
   }
 
   public canFitInSpot( spot: ParkingSpot ): boolean {

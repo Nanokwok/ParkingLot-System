@@ -14,6 +14,14 @@ abstract class Vehicle {
     this.licensePlate = licensePlate;
   }
 
+  public getLicensePlate(): string {
+    return this.licensePlate
+  }
+
+  public setLicensePlate(licensePlate: string): void {
+    this.licensePlate = licensePlate
+  }
+
   public getSpotNeeded(): number {
     return this.spotNeeded;
   }

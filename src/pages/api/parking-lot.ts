@@ -11,7 +11,7 @@ export default async function handler(
   try {
     if (req.method === 'GET') {
       const parkingLot = await ParkingLotModel.findOne();
-      res.status(200).json(parkingLot || { levels: [] });
+      res.status(200).json(parkingLot ? parkingLot.toObject() : { levels: [] });
     } else if (req.method === 'POST') {
       await ParkingLotModel.findOneAndUpdate(
         {}, 
