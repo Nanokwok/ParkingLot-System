@@ -1,6 +1,6 @@
 import { VehicleSize } from "@/types/vehicleSize"
-import type { Vehicle } from "./vehicle"
-import { Level } from "./level"
+import type { Vehicle } from "./Vehicle"
+import { Level } from "./Level"
 
 class ParkingSpot {
   public vehicle: Vehicle | null = null

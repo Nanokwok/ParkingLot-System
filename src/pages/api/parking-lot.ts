@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ParkingLotModel} from '../../../lib/models/ParkingLot';
+import { ParkingLotModel } from '../../../lib/models/ParkingLot';
 import dbConnect from '../../../lib/mongodb';
 
 export default async function handler(
@@ -11,14 +11,24 @@ export default async function handler(
   try {
     if (req.method === 'GET') {
       const parkingLot = await ParkingLotModel.findOne();
-      res.status(200).json(parkingLot ? parkingLot.toObject() : { levels: [] });
+      if (parkingLot) {
+        res.status(200).json(parkingLot.toObject());
+      } else {
+        res.status(200).json({ levels: [] });
+      }
     } else if (req.method === 'POST') {
-      await ParkingLotModel.findOneAndUpdate(
-        {}, 
-        { levels: req.body.levels },
-        { upsert: true, new: true }
-      );
-      res.status(200).json({ success: true });
+      const { levels } = req.body;
+
+      if (levels) {
+        await ParkingLotModel.findOneAndUpdate(
+          {}, 
+          { levels },
+          { upsert: true, new: true }
+        );
+        res.status(200).json({ success: true });
+      } else {
+        res.status(400).json({ error: 'Levels data is required' });
+      }
     } else {
       res.status(405).end();
     }

@@ -1,6 +1,6 @@
-import { Vehicle } from './vehicle';
-import { VehicleSize } from '../types/vehicleSize';
-import { ParkingSpot } from './parkingSpot';
+import { Vehicle } from '../Vehicle';
+import { VehicleSize } from '../../types/vehicleSize';
+import { ParkingSpot } from '../ParkingSpot';
 
 class Bus extends Vehicle {
   constructor( licencePlate: string ) {

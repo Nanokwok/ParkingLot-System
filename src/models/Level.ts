@@ -1,6 +1,6 @@
-import { ParkingSpot } from './parkingSpot';
+import { ParkingSpot } from './ParkingSpot';
 import { VehicleSize } from '../types/vehicleSize';
-import { Vehicle } from './vehicle';
+import { Vehicle } from './Vehicle';
 
 class Level {
   public floor: number = 0;

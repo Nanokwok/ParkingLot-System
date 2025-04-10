@@ -1,5 +1,5 @@
-import type { Level } from "./level"
-import type { Vehicle } from "./vehicle"
+import type { Level } from "./Level"
+import type { Vehicle } from "./Vehicle"
 
 class ParkingLot {
   private readonly levels: Level[]

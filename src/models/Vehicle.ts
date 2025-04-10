@@ -1,5 +1,5 @@
 import { VehicleSize } from '../types/vehicleSize';
-import { ParkingSpot } from './parkingSpot';
+import { ParkingSpot } from './ParkingSpot';
 
 abstract class Vehicle {
   protected parkingSpots: Array<ParkingSpot> = new Array<ParkingSpot>();
