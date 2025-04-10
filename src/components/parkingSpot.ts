@@ -3,11 +3,11 @@ import { Vehicle } from './vehicle';
 import { Level } from './level';
 
 class ParkingSpot {
-  private vehicle: Vehicle | null = null;
-  private spotSize: VehicleSize = VehicleSize.Compact;
-  private row: number = 0;
-  private spotNumber: number = 0;
-  private level: Level = new Level(0, 0);
+  public vehicle: Vehicle | null = null;
+  public spotSize: VehicleSize = VehicleSize.Compact;
+  public row: number = 0;
+  public spotNumber: number = 0;
+  public level: Level = new Level(0, 0);
 
   constructor(lvl: Level, r: number, n: number, sz: VehicleSize) {
     this.level = lvl;
@@ -50,6 +50,15 @@ class ParkingSpot {
   public removeVehicle(): void {
     this.level.spotFreed();
     this.vehicle = null;
+  }
+
+  public toJSON() {
+    return {
+      spotSize: this.spotSize,
+      row: this.row,
+      spotNumber: this.spotNumber,
+      vehicle: this.vehicle ? this.vehicle.print() : null
+    };
   }
 
   public print(): string {

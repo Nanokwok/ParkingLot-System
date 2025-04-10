@@ -19,8 +19,8 @@ class ParkingLot {
     return false;
   }
 
-  public getLevels(): number {
-    return this.NUM_LEVELS;
+  public getLevels(): Level[] {
+    return this.levels;
   }
 
   public getIndexLevel(): number {

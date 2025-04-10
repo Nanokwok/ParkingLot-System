@@ -3,9 +3,9 @@ import { VehicleSize } from '../types/vehicleSize';
 import { Vehicle } from './vehicle';
 
 class Level {
-  private floor: number = 0;
-  private spots: ParkingSpot[] = [];
-  private availableSpots: number = 0;
+  public floor: number = 0;
+  public spots: ParkingSpot[] = [];
+  public availableSpots: number = 0;
   private static readonly SPOTS_PER_ROW: number = 10;
 
   constructor( floor: number, numberSpots: number ) {
@@ -87,6 +87,14 @@ class Level {
   
   public spotFreed(): void {
     this.availableSpots++;
+  }
+
+  public toJSON() {
+    return {
+      floor: this.floor,
+      spots: this.spots.map(spot => spot.toJSON()),
+      availableSpots: this.availableSpots
+    };
   }
 
   public print(): string[] {
