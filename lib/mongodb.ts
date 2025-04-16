@@ -2,26 +2,39 @@ import mongoose, { Mongoose } from 'mongoose';
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/parking-lot';
 
-interface MongooseCache {
-  conn: Mongoose | null;
-  promise: Promise<Mongoose> | null;
+class DatabaseConnection {
+  private static instance: DatabaseConnection;
+  private conn: Mongoose | null = null;
+  private connectionPromise: Promise<Mongoose> | null = null;
+
+  private constructor() {}
+
+  public static getInstance(): DatabaseConnection {
+    if (!DatabaseConnection.instance) {
+      DatabaseConnection.instance = new DatabaseConnection();
+    }
+    return DatabaseConnection.instance;
+  }
+
+  public async connect(): Promise<Mongoose> {
+    if (this.conn) {
+      return this.conn;
+    }
+
+    if (!this.connectionPromise) {
+      this.connectionPromise = mongoose.connect(MONGODB_URI).then((mongoose) => {
+        return mongoose;
+      });
+    }
+
+    this.conn = await this.connectionPromise;
+    return this.conn;
+  }
 }
 
-let cached: MongooseCache = (global as any).mongoose || { conn: null, promise: null };
-
 async function dbConnect(): Promise<Mongoose> {
-  if (cached.conn) {
-    return cached.conn;
-  }
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-      return mongoose;
-    });
-  }
-
-  cached.conn = await cached.promise;
-  return cached.conn;
+  const dbConnection = DatabaseConnection.getInstance();
+  return await dbConnection.connect();
 }
 
 export default dbConnect;

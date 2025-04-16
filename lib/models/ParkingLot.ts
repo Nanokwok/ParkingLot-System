@@ -17,29 +17,47 @@ interface IParkingLot extends Document {
   levels: ILevel[];
 }
 
-const ParkingSpotSchema: Schema = new Schema({
-  spotSize: { type: String, enum: ['Motorcycle', 'Compact', 'Large'], required: true },
-  row: { type: Number, required: true },
-  spotNumber: { type: Number, required: true },
-  vehicle: { type: String, default: null }
-});
+class ParkingLotModelSingleton {
+  private static instance: ParkingLotModelSingleton;
+  private model: Model<IParkingLot>;
 
-const LevelSchema: Schema = new Schema({
-  floor: { type: Number, required: true },
-  spots: [ParkingSpotSchema],
-  availableSpots: { type: Number, required: true }
-});
+  private constructor() {
+    const ParkingSpotSchema: Schema = new Schema({
+      spotSize: { type: String, enum: ['Motorcycle', 'Compact', 'Large'], required: true },
+      row: { type: Number, required: true },
+      spotNumber: { type: Number, required: true },
+      vehicle: { type: String, default: null }
+    });
 
-const ParkingLotSchema: Schema = new Schema({
-  levels: [LevelSchema]
-});
+    const LevelSchema: Schema = new Schema({
+      floor: { type: Number, required: true },
+      spots: [ParkingSpotSchema],
+      availableSpots: { type: Number, required: true }
+    });
 
-let ParkingLotModel: Model<IParkingLot>;
+    const ParkingLotSchema: Schema = new Schema({
+      levels: [LevelSchema]
+    });
 
-try {
-  ParkingLotModel = mongoose.model<IParkingLot>('ParkingLot');
-} catch {
-  ParkingLotModel = mongoose.model<IParkingLot>('ParkingLot', ParkingLotSchema);
+    try {
+      this.model = mongoose.model<IParkingLot>('ParkingLot');
+    } catch {
+      this.model = mongoose.model<IParkingLot>('ParkingLot', ParkingLotSchema);
+    }
+  }
+
+  public static getInstance(): ParkingLotModelSingleton {
+    if (!ParkingLotModelSingleton.instance) {
+      ParkingLotModelSingleton.instance = new ParkingLotModelSingleton();
+    }
+    return ParkingLotModelSingleton.instance;
+  }
+
+  public getModel(): Model<IParkingLot> {
+    return this.model;
+  }
 }
+
+const ParkingLotModel = ParkingLotModelSingleton.getInstance().getModel();
 
 export { ParkingLotModel };
