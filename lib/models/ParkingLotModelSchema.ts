@@ -17,8 +17,8 @@ interface IParkingLot extends Document {
   levels: ILevel[];
 }
 
-class ParkingLotModelSingleton {
-  private static instance: ParkingLotModelSingleton;
+class ParkingLotModelSchema {
+  private static instance: ParkingLotModelSchema;
   private model: Model<IParkingLot>;
 
   private constructor() {
@@ -46,11 +46,11 @@ class ParkingLotModelSingleton {
     }
   }
 
-  public static getInstance(): ParkingLotModelSingleton {
-    if (!ParkingLotModelSingleton.instance) {
-      ParkingLotModelSingleton.instance = new ParkingLotModelSingleton();
+  public static getInstance(): ParkingLotModelSchema {
+    if (!ParkingLotModelSchema.instance) {
+      ParkingLotModelSchema.instance = new ParkingLotModelSchema();
     }
-    return ParkingLotModelSingleton.instance;
+    return ParkingLotModelSchema.instance;
   }
 
   public getModel(): Model<IParkingLot> {
@@ -58,6 +58,6 @@ class ParkingLotModelSingleton {
   }
 }
 
-const ParkingLotModel = ParkingLotModelSingleton.getInstance().getModel();
+const ParkingLotModel = ParkingLotModelSchema.getInstance().getModel();
 
 export { ParkingLotModel };

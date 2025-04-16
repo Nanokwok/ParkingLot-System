@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { ParkingLotModel } from '../../../lib/models/ParkingLot';
+import { ParkingLotModel } from '../../../lib/models/ParkingLotModelSchema';
 import dbConnect from '../../../lib/mongodb';
 
 class ParkingLotHandler {
