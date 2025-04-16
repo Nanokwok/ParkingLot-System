@@ -15,18 +15,18 @@ abstract class Vehicle {
   }
 
   public getLicensePlate(): string {
-    return this.licensePlate
+    return this.licensePlate;
   }
 
   public setLicensePlate(licensePlate: string): void {
-    this.licensePlate = licensePlate
+    this.licensePlate = licensePlate;
   }
 
   public getSpotNeeded(): number {
     return this.spotNeeded;
   }
 
-  public VehicleSize(): VehicleSize {
+  public getVehicleSize(): VehicleSize {
     return this.vehicleSize;
   }
 
@@ -41,10 +41,8 @@ abstract class Vehicle {
     this.parkingSpots.length = 0;
   }
 
-  public abstract canFitInSpot(spot: ParkingSpot): boolean
-
+  public abstract canFitInSpot(spot: ParkingSpot): boolean;
   public abstract print(): string;
-
 }
 
 export { Vehicle };
